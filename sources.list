@@ -1,0 +1,73 @@
+########################################################
+################## Apt sources list ####################
+########################################################
+
+# Debian Buster main (and sources) repository
+deb http://deb.debian.org/debian/ buster main non-free contrib
+deb-src http://deb.debian.org/debian/ buster main non-free contrib
+
+# Debian Stable security update repositories
+deb http://security.debian.org/debian-security buster/updates main contrib non-free
+deb-src http://security.debian.org/debian-security buster/updates main contrib non-free
+
+# Debian Stable updates 
+deb http://deb.debian.org/debian/ buster-updates main contrib non-free
+deb-src http://deb.debian.org/debian/ buster-updates main contrib non-free
+
+# Debian Stable backports
+deb http://deb.debian.org/debian/ buster-backports main contrib non-free
+deb-src http://deb.debian.org/debian/ buster-backports main contrib non-free
+
+## Debian Buster multimedia repository
+# deb http://ftp.linux.org.tr/debian-multimedia/ buster main non-free 
+# deb-src http://ftp.linux.org.tr/debian-multimedia/ buster main non-free
+
+# ATOM
+deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main
+
+## Debian Buster multimedia backports
+# deb http://ftp.linux.org.tr/debian-multimedia/ buster-backports main non-free
+# deb-src http://ftp.linux.org.tr/debian-multimedia/ buster-backports main
+
+# Antergos openSUSE repo
+deb http://download.opensuse.org/repositories/home:/antergos/Debian_9.0/ /
+
+# Ungoogled Chromium
+deb http://download.opensuse.org/repositories/home:/ungoogled_chromium/Debian_Buster/ /
+
+# Sublime Text
+deb https://download.sublimetext.com/ apt/stable/
+
+## MakeDeb
+# deb [trusted=yes] https://repo.hunterwittenborn.me/apt/ /
+
+# Apt-fast
+deb http://ppa.launchpad.net/apt-fast/stable/ubuntu bionic main 
+deb-src http://ppa.launchpad.net/apt-fast/stable/ubuntu bionic main
+
+# Brave Internet Browser
+deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main
+
+# Spotify Client
+deb http://repository.spotify.com stable non-free
+
+# WineHQ
+deb https://dl.winehq.org/wine-builds/debian/ buster main 
+
+# Microsoft GPG keys
+deb [arch=amd64] https://packages.microsoft.com/debian/10/prod buster main
+
+# Microsoft Visual Studio Code
+deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
+
+# Microsoft Skype
+deb [arch=amd64] https://repo.skype.com/deb stable main
+
+#################################################################
+# This system was installed using small removable media         #
+# (e.g. netinst, live or single CD). The matching "deb cdrom"   # 
+# entries were disabled at the end of the installation process. #
+# For information about how to configure apt package sources,   #
+# see the sources.list(5) manual. 				#
+#################################################################
+

@@ -1,0 +1,92 @@
+#! /bin/sh
+
+##### Autostart Scripts #####
+
+/home/taylank/.config/sxhkd/launch.sh & 		# Hotkey Daemon
+/home/taylank/.config/picom/launch.sh &		# Window Compositor
+/usr/bin/nitrogen --restore &	# Wallpaper Chooser
+/home/taylank/.config/polybar/launch.sh &   		# Status Bar
+/usr/bin/rofi -show drun -display-drun "Run" -show-icons &		# Run launcher
+pgrep bspswallow || bspswallow &	      # Window swallowing for Bspwm
+pgrep lxpolkit || lxpolkit &	       # Policy Kit Client
+pgrep xfce4-clipman || xfce4-clipman &		# Clipboard Manager
+pgrep light-locker || light-locker &		# Screen Locker
+#pgrep lxqt-notificationd || lxqt-notificationd &	# Notification Daemon
+/home/taylank/.config/dunst/launch.sh &		# Notification Daemon
+/home/taylank/.config/flameshot/launch.sh &		# Screenshot tool
+/home/taylank/.config/guake/launch.sh &  	# Drop down terminal emulator
+pgrep ibus-daemon || ibus-daemon &		 	# IBus Daemon
+bspc rule -r "*" & 	# Remove the previous rules before refreshing Bspwm
+nvidia-settings -a [gpu:0]/GpuPowerMizerMode=1 & 	# NVidia performance mode
+xrandr --dpi 96 & 	# Set screen dpi to 96 with Xrandr
+sudo cpupower frequency-set -g performance & 		# Adjust Cpu frequency
+
+##### Screen / Workspaces Setup #####
+
+/usr/bin/bspc monitor -d 1 2 3 4 5 6 7 8 9
+
+##### Configuration #####
+
+# Customization
+bspc config border_width         0
+bspc config window_gap           10
+bspc config focused_border_color "#d1d3a7"
+bspc config normal_border_color "#305769"
+bspc config presel_feedback_color "#d1d3a7"
+bspc config borderless_monocle   false
+bspc config gapless_monocle      false
+bspc config bottom_padding	4
+bspc config top_padding 	54
+bspc config left_padding 	4
+bspc config right_padding	4
+bspc config directional_focus_tightness low
+
+# Workflow
+bspc config focus_follows_pointer true
+bspc config split_ratio          0.52
+
+# Pointer
+bspc config pointer_motion_interval 16.6666666667 
+bspc config pointer_modifier mod4
+bspc config pointer_action1 move
+bspc config pointer_action3 resize_side
+bspc config pointer_action3 resize_corner
+
+##### Window Rules #####
+
+bspc rule -a Guake state=floating sticky=on
+bspc rule -a SimpleScreenRecorder state=floating
+bspc rule -a Cheese state=pseudo_tiled
+bspc rule -a zoom desktop='^7'
+bspc rule -a Firefox desktop='^2' follow=on
+bspc rule -a Code desktop='^5' follow=on
+bspc rule -a discord desktop='^6' follow=on manage=on
+bspc rule -a Spotify desktop='^4'
+bspc rule -a LibreWolf desktop='^2'
+bspc rule -a Screenkey state=floating
+bspc rule -a Pavucontrol state=floating
+bspc rule -a Nightly desktop='^2' follow=on manage=on state=tiled
+bspc rule -a Deadbeef state=pseudo_tiled
+bspc rule -a Galculator state=floating
+bspc rule -a IceCat desktop='^2' follow=on
+bspc rule -a amongus.exe state=fullscreen desktop='^9' follow=on
+bspc rule -a Flameshot state=floating
+bspc rule -a Soffice state=tiled
+bspc rule -a whatsappweb-nativefier-d40211 desktop='^4' follow=on
+bspc rule -a Evince manage=on state=tiled
+bspc rule -a Emacs state=tiled manage=on
+bspc rule -a Rofi state=floating sticky=on anage=on
+bspc rule -a Light-locker-settings.py state=floating manage=on
+bspc rule -a Lightdm-gtk-greeter-settings state=floating manage=on
+bspc rule -a Zathura manage=on state=tiled
+bspc rule -a Brave-browser manage=on desktop='^2' follow=on
+bspc rule -a flameshot manage=on state=floating
+bspc rule -a URxvt manage=on state=tiled
+bspc rule -a 'Kvantum Manager' manage=on state=floating
+bspc rule -a Xfce4-appfinder manage=on state=floating
+bspc rule -a Qalculate-gtk manage=on state=pseudo_tiled
+bspc rule -a Firefox:Toolkit sticky=on state=floating
+bspc rule -a Firefox:Browser state=floating
+bspc rule -a Org.gnome.DejaDup state=pseudo_tiled manage=on
+bspc rule -a flashpoint-launcher manage=on desktop='^9' follow=on
+bspc rule -a Flashplayer32SA manage=on desktop='^9' follow=on state=tiled

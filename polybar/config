@@ -1,0 +1,223 @@
+; vim:ft=dosini
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;; Polybar Configuration File ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[colors]
+background = #133544
+background-alt = #d1d3a7
+background-alt-light = #254452 
+foreground = #9ca9af
+foreground-alt = #305769
+primary = #d1d3a7
+secondary = #133544
+alert = #d75f5f
+
+[bar/example]
+
+width = 100%
+height = 36
+radius = 0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-color = #00000000
+
+border-top-size = 14
+border-bottom-size = 14
+border-right-size = 14
+border-left-size = 14
+
+module-margin-left = 1
+module-margin-right = 2
+
+padding-left = 0
+padding-right = 0
+
+font-0 = "fixed:pixelsize=10:antialias=true;1;3"
+font-1 = "FontAwesome5Free:style=Solid:pixelsize=12:antialias=true;3"
+
+modules-left = bspwm xwindow 
+modules-center = 
+modules-right = xkeyboard pulseaudio memory cpu wlan date powermenu
+
+bottom = off
+
+wm-restack = bspwm
+override-redirect = true
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xwindow]
+
+type = internal/xwindow
+label =" %title:0:70:...% " 
+label-background = ${colors.background-alt-light}
+label-foreground = #d3dae3
+
+[module/bspwm]
+
+type = internal/bspwm
+
+label-focused = %index%
+label-focused-background = #d1d3a7
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+label-focused-foreground = #133544
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+format = <label-state> <label-mode>
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+blacklist-1 = caps lock
+
+label-indicator-off ="  tr " 
+label-indicator-off-background = #d1d3a7
+label-indicator-off-foreground = #133544
+
+label-layout =
+
+label-indicator-padding = 0
+label-indicator-margin = 0
+label-indicator-background = #d1d3a7
+label-indicator-foreground = #133544
+
+[module/cpu]
+
+type = internal/cpu
+interval = 2
+format-prefix-foreground = #d1d3a7 
+format-underline = #d3dae3
+label = "   Cpu %percentage:2%% "
+format-background = ${colors.background-alt-light}
+format-foreground = #d1d3a7
+
+[module/memory]
+
+type = internal/memory
+interval = 2
+
+format-prefix-foreground = #133544
+format-prefix = "  "
+
+format-underline = #0a84ff
+label = "Ram %gb_used% " 
+format-background = ${colors.background-alt}
+format-foreground = #133544
+
+[module/wlan]
+
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+format-connected-prefix-foreground = ${colors.secondary}
+format-connected-prefix = " "
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline = #0a84ff
+label-connected = "%essid% "  
+format-connected-background = ${colors.background-alt}
+label-connected-foreground = ${colors.background} 
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/date]
+
+type = internal/date
+interval = 1
+
+date = " %d / %m / %Y"
+
+time = %H:%M:%S
+
+format-background = #234452
+format-prefix = "   " 
+format-foreground = #d1d3a7
+format-prefix-foreground = #d1d3a7
+format-underline = #d3dae3
+
+label = "%time%  · %date% "
+
+[module/pulseaudio]
+
+type = internal/pulseaudio
+
+format-volume = <label-volume> 
+label-volume = "  %percentage%% "
+label-volume-foreground = #d1d3a7
+label-volume-background = ${colors.background-alt-light}
+
+click-right = pgrep -x pavucontrol > /dev/null && killall pavucontrol || pavucontrol
+
+label-muted-background = ${colors.background-alt-light}
+label-muted ="  "
+label-muted-foreground = #d1d3a7
+
+bar-volume-width = 17
+bar-volume-foreground-0 = #d3dae3
+bar-volume-foreground-1 = #0a84ff
+bar-volume-foreground-2 = #c0b18b
+bar-volume-foreground-3 = #c0b18b
+bar-volume-foreground-4 = #c0b18b
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #d75f5f
+bar-volume-gradient = true
+bar-volume-indicator = ||
+bar-volume-indicator-font = 2
+bar-volume-fill = =
+bar-volume-fill-font = 2
+bar-volume-empty = =
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/powermenu]
+type = custom/menu
+
+expand-left = true
+
+format-spacing = 2
+
+label-open ="   "
+label-open-foreground = #d1d3a7
+label-close = "Cancel"
+label-close-foreground = #d1d3a7
+label-separator = " | "
+label-separator-foreground = #d1d3a7
+
+menu-0-0 =  
+menu-0-0-exec = sysemctl reboot
+menu-0-1 =  
+menu-0-1-exec = systemctl poweroff
+menu-0-2 =  
+menu-0-2-exec = pkill -KILL -u taylank
+menu-0-3 =  
+menu-0-3-exec = systemctl suspend
+menu-0-4 = "    "
+menu-0-4-exec = light-locker-command -l 
+
+[global/wm]
+
+margin-top = 0
+margin-bottom = 0
